@@ -23,7 +23,7 @@ class NetworkService {
     suspend fun allProducts(): List<Product> = apiService.getAllProducts()
 
     suspend fun favoriteProducts(): List<String> = withContext(Dispatchers.Default) {
-        apiService.getFavoriteProducts().map { product -> product.name }
+        apiService.getFavoriteProducts().map { product -> product.productId }
     }
 }
 
@@ -31,6 +31,6 @@ interface ApiService {
     @GET("daniil-pastuhov/android-kotlin-template/master/app/src/main/assets/products.json")
     suspend fun getAllProducts() : List<Product>
 
-    @GET("daniil-pastuhov/android-kotlin-template/master/app/src/main/assets/favorite_proudcts.json")
+    @GET("daniil-pastuhov/android-kotlin-template/master/app/src/main/assets/favorite_products.json")
     suspend fun getFavoriteProducts() : List<Product>
 }
