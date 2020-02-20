@@ -100,7 +100,7 @@ class ProductRepository private constructor(
      * A function that filter the list of Products with a given custom assortment.
      */
     private fun List<Product>.applyCustomAssortment(customAssortment: List<String>): List<Product> {
-        return filter { product -> customAssortment.contains(product.productId) }
+        return onEach { product -> product.isFavorite = customAssortment.contains(product.productId) }
     }
 
     /**

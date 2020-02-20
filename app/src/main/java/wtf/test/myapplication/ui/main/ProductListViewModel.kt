@@ -73,7 +73,8 @@ class ProductListViewModel internal constructor(
                     productRepository.tryUpdateRecentProductsForProductGroupCache(productGroup)
                 }
             }
-            .onCompletion {  _spinner.value = false }
+            .onEach { _spinner.value = false }
+            .onCompletion { _spinner.value = false }
             .catch { throwable ->  _snackbar.value = throwable.message  }
             .launchIn(viewModelScope)
     }

@@ -10,7 +10,8 @@ data class Product(
     val name: String,
     val description: String,
     val productGroupId: Int,
-    val imageUrl: String = ""
+    val imageUrl: String = "",
+    var isFavorite: Boolean
 ) {
     override fun toString() = name
 }

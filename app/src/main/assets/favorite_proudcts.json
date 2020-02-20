@@ -1,6 +1,6 @@
 [
-  {"plantId": "solanum-lycopersicum"},
-  {"plantId": "pyrus"},
-  {"plantId": "prunus-persica"},
-  {"plantId": "malus-pumila"}
+  {"productId": "solanum-lycopersicum"},
+  {"productId": "pyrus"},
+  {"productId": "prunus-persica"},
+  {"productId": "malus-pumila"}
 ]
