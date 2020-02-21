@@ -1,6 +1,5 @@
 package wtf.test.myapplication.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -9,12 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import wtf.test.myapplication.ProductRepository
 import wtf.test.myapplication.R
-import wtf.test.myapplication.data.models.Product
 import wtf.test.myapplication.databinding.MainFragmentBinding
 import wtf.test.myapplication.utils.Injector
 
@@ -29,8 +26,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = super.onCreateView(inflater, container, savedInstanceState)
         val binding = if (root == null) MainFragmentBinding.inflate(inflater, container, false) else MainFragmentBinding.bind(root)
+        binding.apply {
+            callback = object : Callback {
+                override fun onFilterButtonPressed() { updateDataByGroup() }
+            }
+        }
         context ?: return binding.root
-
 
         // show the spinner when [ViewModel.spinner] is true
         viewModel.spinner.observe(viewLifecycleOwner) { show ->
@@ -46,28 +47,14 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         }
 
         val adapter = ProductAdapter()
-        binding.plantList.adapter = adapter
+        binding.productList.adapter = adapter
 
-        viewModel.productsFlow.observe(viewLifecycleOwner) { plants ->
-            adapter.submitList(plants)
+        viewModel.productsFlow.observe(viewLifecycleOwner) { products ->
+            adapter.submitList(products)
         }
 
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_product_list, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.filter_group -> {
-                updateDataByGroup()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     private fun updateDataByGroup() {
@@ -78,6 +65,10 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 setGrowZoneNumber(9)
             }
         }
+    }
+
+    interface Callback {
+        fun onFilterButtonPressed()
     }
 }
 

@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.annotation.VisibleForTesting
 import wtf.test.myapplication.ProductRepository
 import wtf.test.myapplication.data.network.NetworkService
+import wtf.test.myapplication.ui.details.ProductDetailViewModelFactory
 import wtf.test.myapplication.ui.main.ProductListViewModelFactory
 
 interface ViewModelFactoryProvider {
     fun provideProductListViewModelFactory(context: Context): ProductListViewModelFactory
+    fun provideProductDetailViewModelFactory(context: Context, productId: String): ProductDetailViewModelFactory
 }
 
 val Injector: ViewModelFactoryProvider
@@ -16,17 +18,21 @@ val Injector: ViewModelFactoryProvider
 private object DefaultViewModelProvider: ViewModelFactoryProvider {
     private fun getProductRepository(context: Context): ProductRepository {
         return ProductRepository.getInstance(
-            plantDao(context),
-            plantService()
+            productDao(context),
+            dataService()
         )
     }
 
-    private fun plantService() = NetworkService()
+    private fun dataService() = NetworkService()
 
-    private fun plantDao(context: Context) =
+    private fun productDao(context: Context) =
         AppDatabase.getInstance(context.applicationContext).productDao()
 
     override fun provideProductListViewModelFactory(context: Context): ProductListViewModelFactory = ProductListViewModelFactory(getProductRepository(context))
+
+    override fun provideProductDetailViewModelFactory(context: Context, productId: String): ProductDetailViewModelFactory =
+        ProductDetailViewModelFactory(getProductRepository(context), productId)
+
 
 }
 

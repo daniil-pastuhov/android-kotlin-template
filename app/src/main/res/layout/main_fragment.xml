@@ -3,19 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <data>
+        <variable
+            name="callback"
+            type="wtf.test.myapplication.ui.main.MainFragment.Callback" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/plant_list"
+            android:id="@+id/product_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingEnd="@dimen/card_side_margin"
             android:paddingStart="@dimen/card_side_margin"
             android:paddingTop="@dimen/header_margin"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="@integer/grid_columns"
             tools:context="com.google.samples.apps.sunflower.GardenActivity"
             tools:listitem="@layout/list_item_product"/>
@@ -29,5 +35,18 @@
             android:layout_marginEnd="16dp"
             android:layout_gravity="bottom|end" />
 
-    </FrameLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{() -> callback.onFilterButtonPressed()}"
+            android:tint="@android:color/white"
+            app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.SmallComponent"
+            app:layout_anchor="@id/product_list"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/ic_filter_list_white_24dp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

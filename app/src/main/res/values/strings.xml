@@ -4,4 +4,7 @@
     <string name="a11y_product_item_favorite">Product is favorite</string>
     <string name="menu_filter_by_favorite">Filter by favorite</string>
     <string name="menu_filter_by_product_group">Filter by product group</string>
+    <string name="menu_item_share_product">Share me</string>
+    <string name="share_text_product">Check out the %s in the Android app</string>
+    <string name="product_details_title">Details</string>
 </resources>

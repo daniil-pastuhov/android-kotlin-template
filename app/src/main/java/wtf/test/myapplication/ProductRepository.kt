@@ -34,6 +34,8 @@ class ProductRepository private constructor(
      */
     private val customAssortmentFlow = productListFavoriteCache::getOrAwait.asFlow()
 
+    suspend fun getProduct(productId: String) = productDao.getProduct(productId)
+
     /**
      * Fetch a list of [Product]s from the database and apply a custom assortment to the list.
      * Returns a [flow] List of Products.

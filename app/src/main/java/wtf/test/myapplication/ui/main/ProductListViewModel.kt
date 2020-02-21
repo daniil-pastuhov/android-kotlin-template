@@ -50,7 +50,7 @@ class ProductListViewModel internal constructor(
     private val productGroupChannel = ConflatedBroadcastChannel<ProductGroup>()
 
     /**
-     * A list of plants that updates based on the current filter (flow version)
+     * A list of products that updates based on the current filter (flow version)
      */
     val productsFlow: LiveData<List<Product>> = productGroupChannel.asFlow()
         .flatMapLatest { productGroup ->

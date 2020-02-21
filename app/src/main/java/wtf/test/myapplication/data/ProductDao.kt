@@ -12,6 +12,9 @@ import wtf.test.myapplication.data.models.Product
  */
 @Dao
 interface ProductDao {
+    @Query("SELECT * FROM products WHERE id = :productId")
+    suspend fun getProduct(productId: String): Product
+
     @Query("SELECT * from products ORDER BY name")
     fun getProductsFlow(): Flow<List<Product>>
 
