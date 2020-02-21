@@ -4,8 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import wtf.test.myapplication.data.models.Product
 import wtf.test.myapplication.data.ProductDao
+import wtf.test.myapplication.workers.SeedDatabaseWorker
 
 /**
  * The Room database for this app
@@ -30,6 +34,13 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                .addCallback(object : Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
+                        WorkManager.getInstance(context).enqueue(request)
+                    }
+                })
                 .fallbackToDestructiveMigration()
                 .build()
         }
