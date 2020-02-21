@@ -53,7 +53,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             adapter.submitList(products)
         }
 
-        setHasOptionsMenu(true)
         return binding.root
     }
 

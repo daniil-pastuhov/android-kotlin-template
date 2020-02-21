@@ -10,7 +10,7 @@ import wtf.test.myapplication.data.ProductDao
 /**
  * The Room database for this app
  */
-@Database(entities = [Product::class], version = 2, exportSchema = false)
+@Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 
