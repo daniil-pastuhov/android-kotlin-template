@@ -99,7 +99,7 @@ private fun createShareIntent() {
             getString(R.string.share_text_product, product.name)
         }
     }
-    val shareIntent = ShareCompat.IntentBuilder.from(activity)
+    val shareIntent = ShareCompat.IntentBuilder.from(requireActivity())
         .setText(shareText)
         .setType("text/plain")
         .createChooserIntent()
