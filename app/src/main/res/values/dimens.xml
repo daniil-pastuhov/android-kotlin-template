@@ -12,4 +12,5 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="description_min_height">555dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="question_text_size">20sp</dimen>
 </resources>

@@ -8,7 +8,7 @@ buildscript {
         // global variables
         compile_sdk_version = 29
         kotlin_version = '1.4.10'
-        min_sdk_version = 21
+        min_sdk_version = 24
         navigation_version = '2.2.0'
 
         // local variables (use def)
@@ -114,7 +114,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.0.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
         // NOTE: Do not place your application dependencies here; they belong

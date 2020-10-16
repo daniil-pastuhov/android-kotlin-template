@@ -1,7 +1,9 @@
 package wtf.test.myapplication.ui
 
 import android.text.method.LinkMovementMethod
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
@@ -26,4 +28,9 @@ fun bindRenderHtml(view: TextView, description: String?) {
     } else {
         view.text = ""
     }
+}
+
+@BindingAdapter("hideIfZero")
+fun bindHideIfZero(view: ProgressBar, progress: Int) {
+    view.visibility = if (progress <= 0) View.GONE else View.VISIBLE
 }

@@ -7,16 +7,16 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import wtf.test.myapplication.data.models.Product
-import wtf.test.myapplication.data.ProductDao
+import wtf.test.myapplication.data.GameRecordDao
+import wtf.test.myapplication.data.models.GameRecord
 import wtf.test.myapplication.workers.SeedDatabaseWorker
 
 /**
  * The Room database for this app
  */
-@Database(entities = [Product::class], version = 1, exportSchema = false)
+@Database(entities = [GameRecord::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun productDao(): ProductDao
+    abstract fun gameRecordDao(): GameRecordDao
 
     companion object {
 

@@ -2,38 +2,31 @@ package wtf.test.myapplication.utils
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
-import wtf.test.myapplication.ProductRepository
+import wtf.test.myapplication.GameRepository
 import wtf.test.myapplication.data.network.NetworkService
-import wtf.test.myapplication.ui.details.ProductDetailViewModelFactory
-import wtf.test.myapplication.ui.main.ProductListViewModelFactory
+import wtf.test.myapplication.ui.main.GameViewModelFactory
 
 interface ViewModelFactoryProvider {
-    fun provideProductListViewModelFactory(context: Context): ProductListViewModelFactory
-    fun provideProductDetailViewModelFactory(context: Context, productId: String): ProductDetailViewModelFactory
+    fun provideGameViewModelFactory(context: Context, gameUuid: String): GameViewModelFactory
 }
 
 val Injector: ViewModelFactoryProvider
     get() = currentInjector
 
 private object DefaultViewModelProvider: ViewModelFactoryProvider {
-    private fun getProductRepository(context: Context): ProductRepository {
-        return ProductRepository.getInstance(
-            productDao(context),
+    private fun getProductRepository(context: Context): GameRepository {
+        return GameRepository.getInstance(
+            gameRecordDao(context),
             dataService()
         )
     }
 
     private fun dataService() = NetworkService()
 
-    private fun productDao(context: Context) =
-        AppDatabase.getInstance(context.applicationContext).productDao()
+    private fun gameRecordDao(context: Context) =
+        AppDatabase.getInstance(context.applicationContext).gameRecordDao()
 
-    override fun provideProductListViewModelFactory(context: Context): ProductListViewModelFactory = ProductListViewModelFactory(getProductRepository(context))
-
-    override fun provideProductDetailViewModelFactory(context: Context, productId: String): ProductDetailViewModelFactory =
-        ProductDetailViewModelFactory(getProductRepository(context), productId)
-
-
+    override fun provideGameViewModelFactory(context: Context, gameUuid: String): GameViewModelFactory = GameViewModelFactory(getProductRepository(context), gameUuid)
 }
 
 private object Lock

@@ -6,8 +6,8 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion compile_sdk_version
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
     defaultConfig {
         applicationId "wtf.test.myapplication"

@@ -7,23 +7,8 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="wtf.test.myapplication.ui.main.MainFragment"
-        tools:layout="@layout/main_fragment">
-
-        <action
-            android:id="@+id/action_main_fragment_to_product_detail_fragment"
-            app:destination="@id/product_detail_fragment"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/product_detail_fragment"
-        android:name="wtf.test.myapplication.ui.details.ProductDetailFragment"
-        android:label="@string/product_details_title"
-        tools:layout="@layout/fragment_product_detail">
-        <argument
-            android:name="productId"
-            app:argType="string" />
+        android:name="wtf.test.myapplication.ui.main.QuestionsFragment"
+        tools:layout="@layout/questions_fragment">
     </fragment>
 
 </navigation>

@@ -1,2 +1,3 @@
-# android-kotlin-template
-Quick start for Android Kotlin simple project with Room, coroutines and Retrofit 
+# Kahoot app test
+Test app.
+Open with Android Studio at least v4.0.2 and enjoy on a connected device or an emulator

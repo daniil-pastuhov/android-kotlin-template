@@ -8,7 +8,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import kotlinx.coroutines.coroutineScope
-import wtf.test.myapplication.data.models.Product
+import wtf.test.myapplication.data.models.GameModel
 import wtf.test.myapplication.utils.AppDatabase
 
 class SeedDatabaseWorker(
@@ -17,13 +17,14 @@ class SeedDatabaseWorker(
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
-            applicationContext.assets.open("products.json").use { inputStream ->
+            applicationContext.assets.open("test_quiz.json").use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
-                    val productType = object : TypeToken<List<Product>>() {}.type
-                    val products: List<Product> = Gson().fromJson(jsonReader, productType)
+                    val gameType = object : TypeToken<GameModel>() {}.type
+                    val gameModel: GameModel = Gson().fromJson(jsonReader, gameType)
 
                     val database = AppDatabase.getInstance(applicationContext)
-                    database.productDao().insertAll(products)
+                    // TODO: use db
+//                    database.questionsDao().insertAll(gameModel.questions)
 
                     Result.success()
                 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="wtf.test.myapplication.data.models.Question"/>
+        <variable
+            name="viewModel"
+            type="wtf.test.myapplication.ui.main.GameViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_normal"
+            >
+
+            <TextView
+                android:id="@+id/question_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_normal"
+                android:textAppearance="?attr/textAppearanceCaption"
+                android:textColor="?attr/primaryTextColor"
+                android:textSize="@dimen/question_text_size"
+                app:layout_constraintBottom_toTopOf="@id/answer_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:renderHtml="@{viewModel.questionLiveData.question}"
+                tools:text="What is it?" />
+
+            <ImageView
+                android:id="@+id/question_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:contentDescription="@string/a11y_product_item_image"
+                android:fitsSystemWindows="true"
+                android:padding="@dimen/margin_normal"
+                android:scaleType="centerCrop"
+                app:imageFromUrl="@{viewModel.questionLiveData.image}"
+                app:layout_constraintBottom_toTopOf="@+id/answer_list"
+                app:layout_constraintTop_toBottomOf="@id/question_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/answer_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/card_side_margin"
+                android:paddingTop="@dimen/header_margin"
+                android:paddingEnd="@dimen/card_side_margin"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/choice_count_down"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:spanCount="@integer/grid_columns"
+                tools:listitem="@layout/list_item_choice" />
+
+            <ProgressBar
+                android:id="@+id/choice_count_down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="1000"
+                android:progress="@{viewModel.choiceCountDownLiveData}"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                app:hideIfZero="@{viewModel.choiceCountDownLiveData}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/spinner"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="bottom|end" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

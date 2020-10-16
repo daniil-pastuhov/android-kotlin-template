@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ShapeAppearance.Product.Card" parent="ShapeAppearance.MaterialComponents">
+    <style name="ShapeAppearance.Choice.Card" parent="ShapeAppearance.MaterialComponents">
         <item name="cornerFamily">rounded</item>
 
         <item name="cornerSizeTopLeft">0dp</item>

@@ -9,11 +9,12 @@
             name="clickListener"
             type="android.view.View.OnClickListener"/>
         <variable
-            name="product"
-            type="wtf.test.myapplication.data.models.Product"/>
+            name="choice"
+            type="wtf.test.myapplication.data.models.Choice"/>
     </data>
 
     <wtf.test.myapplication.ui.MaskedCardView
+        android:id="@+id/choiceView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/card_side_margin"
@@ -22,48 +23,29 @@
         android:onClick="@{clickListener}"
         app:cardElevation="@dimen/card_elevation"
         app:cardPreventCornerOverlap="false"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Product.Card">
+        android:clipToPadding="true"
+        android:clipChildren="true"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Choice.Card">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/product_item_image"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/product_item_image_height"
-                android:contentDescription="@string/a11y_product_item_image"
-                android:scaleType="centerCrop"
-                app:imageFromUrl="@{product.imageUrl}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
-                android:id="@+id/product_item_title"
+                android:id="@+id/choice_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_normal"
                 android:layout_marginTop="@dimen/margin_normal"
-                android:text="@{product.name}"
+                android:text="@{choice.answer}"
                 android:textAppearance="?attr/textAppearanceListItem"
-                android:gravity="center_horizontal"
+                android:gravity="center"
+                android:textColor="@color/secondaryTextColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_item_image"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Tomato"/>
-
-            <ImageView
-                android:id="@+id/product_is_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_favorite_white_24dp"
-                android:contentDescription="@string/a11y_product_item_favorite"
-                android:visibility="@{product.isFavorite ? View.VISIBLE : View.GONE}"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                tools:text="Choice 1"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,10 +1,6 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="a11y_product_item_image">Picture of product</string>
-    <string name="a11y_product_item_favorite">Product is favorite</string>
-    <string name="menu_filter_by_favorite">Filter by favorite</string>
-    <string name="menu_filter_by_product_group">Filter by product group</string>
-    <string name="menu_item_share_product">Share me</string>
-    <string name="share_text_product">Check out the %s in the Android app</string>
-    <string name="product_details_title">Details</string>
+    <string name="app_name">K!</string>
+    <string name="a11y_product_item_image">Illustration of product</string>
+    <string name="info_game_finished">Game is finished</string>
+    <string name="info_game_score">New high score! %1$d out of %2$d correct answers</string>
 </resources>
